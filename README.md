@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-Here's a README file tailored for your Authentication project: 
-
-=======
->>>>>>> aef73faaecbbb402a51c2f738c94b963ec265f18
----
 
 # Authentication System with Next.js
 
