@@ -108,8 +108,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-<<<<<<< HEAD
-Let me know if you'd like any changes or additions!
-=======
-Let me know if you'd like any changes or additions!
->>>>>>> aef73faaecbbb402a51c2f738c94b963ec265f18
