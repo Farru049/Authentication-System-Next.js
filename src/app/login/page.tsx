@@ -91,12 +91,10 @@ export default function LoginPage() {
                 </div>
                 <hr className="my-4" />
                 <div className="text-center">
-                    <Link
-                        href="/signup"
-                        className="text-blue-600 hover:text-blue-700 text-sm"
-                    >
-                        Don't have an account? Sign up
-                    </Link>
+                <Link href="/signup" className="text-blue-600 hover:text-blue-700 text-sm">
+  Don&apos;t have an account? Sign up
+                </Link>
+
                 </div>
             </div>
         </div>
