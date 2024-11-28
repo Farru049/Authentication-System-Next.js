@@ -1,4 +1,5 @@
 import sgMail from "@sendgrid/mail";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // Ensure API key is set
 const sendgridApiKey = process.env.SENDGRID_API_KEY;
@@ -7,8 +8,12 @@ if (!sendgridApiKey) {
 }
 sgMail.setApiKey(sendgridApiKey);
 
+export interface EmailVerificationRoute {
+    sendVerificationEmail?: (email: string, token: string) => Promise<void>;
+}
+
 export const sendVerificationEmail = async (email: string, token: string): Promise<void> => {
-    // Ensure base URL is defined in environment variables
+    // Existing implementation remains the same
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     if (!baseUrl) {
         throw new Error("NEXT_PUBLIC_BASE_URL is not defined in environment variables.");
@@ -18,7 +23,7 @@ export const sendVerificationEmail = async (email: string, token: string): Promi
 
     const message = {
         to: email,
-        from: "alifarhaan655@gmail.com", // Replace with your verified sender email
+        from: "alifarhaan655@gmail.com",
         subject: "Verify Your Email",
         html: `
             <p>Click the link below to verify your email address:</p>
@@ -34,3 +39,5 @@ export const sendVerificationEmail = async (email: string, token: string): Promi
         throw new Error("Failed to send verification email");
     }
 };
+
+export const runtime = 'nodejs';
