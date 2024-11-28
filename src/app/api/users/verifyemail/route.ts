@@ -1,9 +1,20 @@
 import sgMail from "@sendgrid/mail";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+// Ensure API key is set
+const sendgridApiKey = process.env.SENDGRID_API_KEY;
+if (!sendgridApiKey) {
+    throw new Error("SENDGRID_API_KEY is not defined in environment variables.");
+}
+sgMail.setApiKey(sendgridApiKey);
 
-export const sendVerificationEmail = async (email: any, token: any) => {
-    const verificationLink = `${process.env.NEXT_PUBLIC_BASE_URL}/verifyemail?token=${token}`;
+export const sendVerificationEmail = async (email: string, token: string): Promise<void> => {
+    // Ensure base URL is defined in environment variables
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    if (!baseUrl) {
+        throw new Error("NEXT_PUBLIC_BASE_URL is not defined in environment variables.");
+    }
+
+    const verificationLink = `${baseUrl}/verifyemail?token=${token}`;
 
     const message = {
         to: email,
