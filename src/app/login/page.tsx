@@ -23,7 +23,6 @@ export default function LoginPage() {
             router.push("/profile");
         } catch (error: any) {
             console.log("Login failed", error);
-            // Log the response from the server to see the error message
             if (error.response) {
                 console.log("Server response:", error.response.data);
                 toast.error(error.response.data?.error || error.message);
@@ -34,7 +33,7 @@ export default function LoginPage() {
         } finally {
             setLoading(false);
         }
-    };   
+    };
 
     useEffect(() => {
         if (user.email.length > 0 && user.password.length > 0) {
@@ -45,36 +44,61 @@ export default function LoginPage() {
     }, [user]);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? "Processing" : "Login"}</h1>
-            <hr />
-            
-            <label htmlFor="email">email</label>
-            <input 
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-                id="email"
-                type="text"
-                value={user.email}
-                onChange={(e) => setUser({...user, email: e.target.value})}
-                placeholder="email"
-            />
-            <label htmlFor="password">password</label>
-            <input 
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-                id="password"
-                type="password"
-                value={user.password}
-                onChange={(e) => setUser({...user, password: e.target.value})}
-                placeholder="password"
-            />
-            <button
-                onClick={onLogin}
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-                disabled={buttonDisabled || loading}
-            >
-                {loading ? "Processing..." : "Login here"}
-            </button>
-            <Link href="/signup">Visit Signup page</Link>
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 px-4 bg-gradient-to-r from-purple-600 to-blue-500">
+            <div className="max-w-sm w-full bg-white p-8 rounded-lg shadow-md">
+                <h1 className="text-2xl font-semibold text-center mb-6 text-blue-600">
+                    {loading ? "Processing..." : "Login"}
+                </h1>
+                <hr className="mb-4" />
+                <div className="space-y-4">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email
+                        </label>
+                        <input
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"
+                            id="email"
+                            type="text"
+                            value={user.email}
+                            onChange={(e) => setUser({ ...user, email: e.target.value })}
+                            placeholder="Email"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <input
+                            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"
+                            id="password"
+                            type="password"
+                            value={user.password}
+                            onChange={(e) => setUser({ ...user, password: e.target.value })}
+                            placeholder="Password"
+                        />
+                    </div>
+                    <button
+                        onClick={onLogin}
+                        disabled={buttonDisabled || loading}
+                        className="w-full p-2 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg focus:outline-none"
+                    >
+                        {loading ? (
+                            <span className="w-5 h-5 border-4 border-t-transparent border-blue-500 rounded-full animate-spin mx-auto"></span>
+                        ) : (
+                            "Login"
+                        )}
+                    </button>
+                </div>
+                <hr className="my-4" />
+                <div className="text-center">
+                    <Link
+                        href="/signup"
+                        className="text-blue-600 hover:text-blue-700 text-sm"
+                    >
+                        Don't have an account? Sign up
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 }
