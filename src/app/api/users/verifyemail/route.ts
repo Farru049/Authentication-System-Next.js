@@ -7,21 +7,6 @@ if (!sendgridApiKey) {
 }
 sgMail.setApiKey(sendgridApiKey);
 
-// Define a type for the route handler with additional methods
-type RouteHandlerWithExtras = {
-    GET?: Function;
-    HEAD?: Function;
-    OPTIONS?: Function;
-    POST?: Function;
-    sendVerificationEmail?: (email: string, token: string) => Promise<void>;
-};
-
-// Type-safe function for checking fields
-function checkFields<T extends Record<string, unknown>>(obj: T): T {
-    return obj;
-}
-
-// Verification email sending function
 export const sendVerificationEmail = async (email: string, token: string): Promise<void> => {
     // Ensure base URL is defined in environment variables
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -49,12 +34,3 @@ export const sendVerificationEmail = async (email: string, token: string): Promi
         throw new Error("Failed to send verification email");
     }
 };
-
-// Validate the route handler
-checkFields<RouteHandlerWithExtras>({
-    sendVerificationEmail,
-    // You can add other route handler methods if needed
-});
-
-// Specify the runtime
-export const runtime = 'nodejs';
