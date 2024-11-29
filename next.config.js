@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    output: 'standalone', // Important for Vercel deployment
     typescript: {
       ignoreBuildErrors: true,
     },
