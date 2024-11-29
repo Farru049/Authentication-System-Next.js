@@ -3,8 +3,7 @@
     "builds": [
       {
         "src": "next.config.js",
-        "use": "@vercel/next",
-        "config": { "buildCommand": "next build" }
+        "use": "@vercel/next"
       }
     ],
     "routes": [
@@ -14,3 +13,4 @@
       }
     ]
   }
+  
